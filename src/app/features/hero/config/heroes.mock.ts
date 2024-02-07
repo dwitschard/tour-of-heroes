@@ -1,4 +1,4 @@
-import { Hero } from '../components/heroes/heroes.types'
+import { Hero } from '@features/hero/types/heroes.types'
 
 export const HEROES: Hero[] = [
   { id: 12, name: 'Dr. Nice' },
