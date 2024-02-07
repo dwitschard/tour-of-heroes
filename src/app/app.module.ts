@@ -6,6 +6,7 @@ import { AppComponent } from './app.component'
 import { FormsModule } from '@angular/forms'
 import { HeroModule } from '@features/hero/hero.module'
 import { SharedModule } from '@shared/shared.module'
+import { DashboardModule } from '@features/dashboard/dashboard.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { SharedModule } from '@shared/shared.module'
     AppRoutingModule,
     FormsModule,
     HeroModule,
+    DashboardModule,
     SharedModule
   ],
   providers: [],

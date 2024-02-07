@@ -4,7 +4,14 @@ import { Component } from '@angular/core'
   selector: 'app-root',
   template: `
     <h1>{{ title }}</h1>
-    <app-heroes />
+
+    <nav>
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/heroes">Heroes</a>
+    </nav>
+
+    <router-outlet />
+
     <app-messages />
   `,
   styleUrls: ['./app.component.scss']
