@@ -1,24 +1,27 @@
 import { Component } from '@angular/core'
 import { Hero } from './heroes.types'
+import { HEROES } from '../../config/heroes.mock'
 
 @Component({
   selector: 'app-heroes',
   template: `
-    <h2>{{ hero.name | uppercase }} Details</h2>
+    <h2>My Heroes</h2>
 
-    <div><span>id: </span>{{ hero.id }}</div>
-    <div><span>name: </span>{{ hero.name }}</div>
-
-    <div>
-      <label for="name">Hero name: </label>
-      <input id="name" [(ngModel)]="hero.name" placeholder="name" />
-    </div>
+    <ul class="heroes">
+      @for (hero of heroes; track hero.id) {
+        <li>
+          <button type="button">
+            <span class="badge">{{ hero.id }}</span>
+            <span class="name">{{ hero.name }}</span>
+          </button>
+        </li>
+      } @empty {
+        <span>No Heroes available</span>
+      }
+    </ul>
   `,
   styleUrl: './heroes.component.scss'
 })
 export class HeroesComponent {
-  public hero: Hero = {
-    id: 1,
-    name: 'Windstorm'
-  }
+  public heroes: Hero[] = HEROES
 }
