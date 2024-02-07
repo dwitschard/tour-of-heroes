@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router'
 import { HeroLinkComponent } from './components/hero-link/hero-link.component'
 import { HeroesListComponent } from '@features/hero/pages/heroes-list/heroes-list.component'
 import { HeroDetailsComponent } from '@features/hero/pages/hero-details/hero-details.component'
+import { HeroService } from '@features/hero/services/hero.service'
 
 const EXPORTED_COMPONENTS: Array<Type<any> | any[]> = [HeroesListComponent]
 
@@ -21,6 +22,7 @@ const routes: Routes = [
     HeroLinkComponent
   ],
   imports: [SharedModule, FormsModule, RouterModule.forChild(routes)],
+  providers: [HeroService],
   exports: [...EXPORTED_COMPONENTS]
 })
 export class HeroModule {}
