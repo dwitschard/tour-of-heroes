@@ -10,12 +10,10 @@ import { Hero } from '@features/hero/types/heroes.types'
     <ul class="heroes">
       @for (hero of heroes; track hero.id) {
         <li>
-          <a routerLink="{{ hero.id }}">
-            <span [class.selected]="hero === selectedHero" class="badge">{{
-              hero.id
-            }}</span>
-            {{ hero.name | truncate: 7 : '...' }}
-          </a>
+          <app-hero-link
+            [hero]="hero"
+            [isSelected]="hero === selectedHero"
+          ></app-hero-link>
         </li>
       } @empty {
         <span>No Heroes available</span>
@@ -26,9 +24,9 @@ import { Hero } from '@features/hero/types/heroes.types'
       <app-hero-details [hero]="selectedHero"></app-hero-details>
     }
   `,
-  styleUrl: './heroes.component.scss'
+  styleUrl: './heroes-list.component.scss'
 })
-export class HeroesComponent implements OnInit {
+export class HeroesListComponent implements OnInit {
   public selectedHero: Hero | null = null
   public heroes: Hero[] = []
 
