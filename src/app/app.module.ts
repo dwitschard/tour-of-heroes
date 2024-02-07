@@ -3,21 +3,11 @@ import { BrowserModule } from '@angular/platform-browser'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { FormsModule } from '@angular/forms'
-import { HeroModule } from '@features/hero/hero.module'
 import { SharedModule } from '@shared/shared.module'
-import { DashboardModule } from '@features/dashboard/dashboard.module'
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HeroModule,
-    DashboardModule,
-    SharedModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent]
 })

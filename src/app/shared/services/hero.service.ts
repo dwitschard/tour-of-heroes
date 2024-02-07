@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
-import { MessageService } from '@shared/services/message.service'
+import { MessageService } from './message.service'
+import { Hero } from '../types/heroes.types'
 import { HEROES } from '../config/heroes.mock'
-import { Hero } from '@features/hero/types/heroes.types'
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class HeroService {
   constructor(private messageService: MessageService) {}
 
