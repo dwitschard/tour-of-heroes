@@ -42,10 +42,10 @@ import { HEROES } from '../../config/heroes.mock'
   styleUrl: './heroes.component.scss'
 })
 export class HeroesComponent {
-  selectedHero?: Hero
+  public selectedHero: Hero | null = null
   public heroes: Hero[] = HEROES
 
-  onSelect(hero: Hero) {
+  onSelect(hero: Hero): void {
     this.selectedHero = hero
   }
 }
