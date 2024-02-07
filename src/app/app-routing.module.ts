@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { DashboardPageComponent } from '@features/dashboard/pages/dashboard-page/dashboard-page.component'
-import { HeroesListComponent } from '@features/hero/pages/heroes-list/heroes-list.component'
-import { HeroDetailsComponent } from '@features/hero/pages/hero-details/hero-details.component'
+import { NoPreloading, RouterModule, Routes } from '@angular/router'
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardPageComponent },
-  { path: 'heroes', component: HeroesListComponent },
-  { path: 'heroes/:id', component: HeroDetailsComponent }
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./features/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      )
+  },
+  {
+    path: 'heroes',
+    loadChildren: () =>
+      import('./features/hero/hero.module').then((m) => m.HeroModule)
+  }
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: NoPreloading })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

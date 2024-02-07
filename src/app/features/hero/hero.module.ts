@@ -1,12 +1,18 @@
 import { NgModule, Type } from '@angular/core'
 import { SharedModule } from '@shared/shared.module'
 import { FormsModule } from '@angular/forms'
-import { RouterModule } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router'
 import { HeroLinkComponent } from './components/hero-link/hero-link.component'
 import { HeroesListComponent } from '@features/hero/pages/heroes-list/heroes-list.component'
 import { HeroDetailsComponent } from '@features/hero/pages/hero-details/hero-details.component'
 
 const EXPORTED_COMPONENTS: Array<Type<any> | any[]> = [HeroesListComponent]
+
+const routes: Routes = [
+  { path: '', redirectTo: 'heroes', pathMatch: 'full' },
+  { path: 'heroes', component: HeroesListComponent },
+  { path: 'heroes/:id', component: HeroDetailsComponent }
+]
 
 @NgModule({
   declarations: [
@@ -14,7 +20,7 @@ const EXPORTED_COMPONENTS: Array<Type<any> | any[]> = [HeroesListComponent]
     HeroDetailsComponent,
     HeroLinkComponent
   ],
-  imports: [SharedModule, FormsModule, RouterModule.forChild([])],
+  imports: [SharedModule, FormsModule, RouterModule.forChild(routes)],
   exports: [...EXPORTED_COMPONENTS]
 })
 export class HeroModule {}
