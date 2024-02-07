@@ -10,7 +10,11 @@ import { HEROES } from '../../config/heroes.mock'
     <ul class="heroes">
       @for (hero of heroes; track hero.id) {
         <li>
-          <button type="button">
+          <button
+            type="button"
+            (click)="onSelect(hero)"
+            [class.selected]="hero === selectedHero"
+          >
             <span class="badge">{{ hero.id }}</span>
             <span class="name">{{ hero.name }}</span>
           </button>
@@ -19,9 +23,29 @@ import { HEROES } from '../../config/heroes.mock'
         <span>No Heroes available</span>
       }
     </ul>
+
+    @if (selectedHero) {
+      <div>
+        <h2>{{ selectedHero.name | uppercase }} Details</h2>
+        <div>id: {{ selectedHero.id }}</div>
+        <div>
+          <label for="hero-name">Hero name: </label>
+          <input
+            id="hero-name"
+            [(ngModel)]="selectedHero.name"
+            placeholder="name"
+          />
+        </div>
+      </div>
+    }
   `,
   styleUrl: './heroes.component.scss'
 })
 export class HeroesComponent {
+  selectedHero?: Hero
   public heroes: Hero[] = HEROES
+
+  onSelect(hero: Hero) {
+    this.selectedHero = hero
+  }
 }
