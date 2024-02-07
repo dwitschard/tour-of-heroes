@@ -25,18 +25,7 @@ import { HEROES } from '../../config/heroes.mock'
     </ul>
 
     @if (selectedHero) {
-      <div>
-        <h2>{{ selectedHero.name | uppercase }} Details</h2>
-        <div>id: {{ selectedHero.id }}</div>
-        <div>
-          <label for="hero-name">Hero name: </label>
-          <input
-            id="hero-name"
-            [(ngModel)]="selectedHero.name"
-            placeholder="name"
-          />
-        </div>
-      </div>
+      <app-hero-details [hero]="selectedHero"></app-hero-details>
     }
   `,
   styleUrl: './heroes.component.scss'
