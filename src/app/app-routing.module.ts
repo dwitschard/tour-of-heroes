@@ -5,10 +5,11 @@ import { HeroesListComponent } from '@features/hero/pages/heroes-list/heroes-lis
 import { HeroDetailsComponent } from '@features/hero/pages/hero-details/hero-details.component'
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardPageComponent },
   { path: 'heroes', component: HeroesListComponent },
-  { path: 'heroes/:id', component: HeroDetailsComponent }
+  { path: 'heroes/:id', component: HeroDetailsComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: '' }
 ]
 
 @NgModule({
