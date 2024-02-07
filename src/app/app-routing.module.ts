@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core'
 import { NoPreloading, RouterModule, Routes } from '@angular/router'
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
     path: 'dashboard',
     loadChildren: () =>
@@ -14,7 +13,9 @@ const routes: Routes = [
     path: 'heroes',
     loadChildren: () =>
       import('./features/hero/hero.module').then((m) => m.HeroModule)
-  }
+  },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: '' }
 ]
 
 @NgModule({

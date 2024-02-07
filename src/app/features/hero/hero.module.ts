@@ -10,9 +10,8 @@ import { HeroService } from '@features/hero/services/hero.service'
 const EXPORTED_COMPONENTS: Array<Type<any> | any[]> = [HeroesListComponent]
 
 const routes: Routes = [
-  { path: '', redirectTo: 'heroes', pathMatch: 'full' },
-  { path: 'heroes', component: HeroesListComponent },
-  { path: 'heroes/:id', component: HeroDetailsComponent }
+  { path: '', component: HeroesListComponent },
+  { path: ':id', component: HeroDetailsComponent }
 ]
 
 @NgModule({
