@@ -13,6 +13,7 @@ import { HeroService } from '@shared/services/hero.service'
           <app-hero-link
             [hero]="hero"
             [isSelected]="hero === selectedHero"
+            (handleDelete)="onHeroDelete($event)"
           ></app-hero-link>
         </li>
       } @empty {
@@ -34,5 +35,18 @@ export class HeroesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes))
+  }
+
+  add(name: string): void {
+    if (name.trim()) {
+      this.heroService.addHero({ name: name.trim() }).subscribe((hero) => {
+        this.heroes.push(hero)
+      })
+    }
+  }
+
+  onHeroDelete(hero: Hero) {
+    this.heroes = this.heroes.filter((h) => h !== hero)
+    this.heroService.deleteHero(hero.id)
   }
 }

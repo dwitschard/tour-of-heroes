@@ -11,6 +11,7 @@ import { HeroService } from '@shared/services/hero.service'
         {{ hero.name }}
       </a>
     </div>
+    <app-hero-search></app-hero-search>
   `,
   styleUrl: './dashboard-page.component.scss'
 })

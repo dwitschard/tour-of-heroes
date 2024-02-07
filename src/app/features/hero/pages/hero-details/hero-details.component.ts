@@ -7,15 +7,18 @@ import { HeroService } from '@shared/services/hero.service'
 @Component({
   selector: 'app-hero-details',
   template: `
-    <div>
-      <h2>{{ hero.name | uppercase }} Details</h2>
-      <div>id: {{ hero.id }}</div>
+    @if (hero) {
       <div>
-        <label for="hero-name">Hero name: </label>
-        <input id="hero-name" [(ngModel)]="hero.name" placeholder="name" />
+        <h2>{{ hero.name | uppercase }} Details</h2>
+        <div>id: {{ hero.id }}</div>
+        <div>
+          <label for="hero-name">Hero name: </label>
+          <input id="hero-name" [(ngModel)]="hero.name" placeholder="name" />
+        </div>
       </div>
-    </div>
+    }
 
+    <button type="button" (click)="save()">save</button>
     <button type="button" (click)="goBack()">go back</button>
   `,
   styleUrl: './hero-details.component.scss'
@@ -41,5 +44,11 @@ export class HeroDetailsComponent implements OnInit {
 
   goBack() {
     this.location.back()
+  }
+
+  save() {
+    if (this.hero) {
+      this.heroService.updateHero(this.hero).subscribe(() => this.goBack())
+    }
   }
 }
