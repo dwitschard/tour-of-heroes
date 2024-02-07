@@ -17,7 +17,7 @@ import { Hero } from '@features/hero/types/heroes.types'
             [class.selected]="hero === selectedHero"
           >
             <span class="badge">{{ hero.id }}</span>
-            <span class="name">{{ hero.name }}</span>
+            <span class="name">{{ hero.name | truncate: 7 : '...' }}</span>
           </button>
         </li>
       } @empty {
