@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core'
-import { Hero } from '@shared/types/heroes.types'
 import { InMemoryDbService } from 'angular-in-memory-web-api'
+import { Hero } from '@shared/types/heroes.types'
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroMockApiService implements InMemoryDbService {
-  constructor() {}
-
   createDb() {
     const heroes: Hero[] = [
       { id: 12, name: 'Dr. Nice' },

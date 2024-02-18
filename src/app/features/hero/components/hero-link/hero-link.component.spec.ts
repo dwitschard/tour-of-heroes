@@ -8,8 +8,8 @@ describe('HeroLinkComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HeroLinkComponent]
-    })
+    imports: [HeroLinkComponent]
+})
     .compileComponents();
     
     fixture = TestBed.createComponent(HeroLinkComponent);

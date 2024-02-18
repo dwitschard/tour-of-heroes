@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { Hero } from '@shared/types/heroes.types'
 import { HeroService } from '@shared/services/hero.service'
+import { HeroDetailsComponent } from '../hero-details/hero-details.component'
+import { HeroLinkComponent } from '../../components/hero-link/hero-link.component'
 
 @Component({
   selector: 'app-heroes',
@@ -38,7 +40,9 @@ import { HeroService } from '@shared/services/hero.service'
       <app-hero-details [hero]="selectedHero"></app-hero-details>
     }
   `,
-  styleUrl: './heroes-list.component.scss'
+  styleUrl: './heroes-list.component.scss',
+  standalone: true,
+  imports: [HeroLinkComponent, HeroDetailsComponent]
 })
 export class HeroesListComponent implements OnInit {
   public selectedHero: Hero | null = null
@@ -47,14 +51,18 @@ export class HeroesListComponent implements OnInit {
   constructor(private heroService: HeroService) {}
 
   ngOnInit(): void {
-    this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes))
+    this.heroService
+      .getHeroes()
+      .subscribe((heroes: Hero[]) => (this.heroes = heroes))
   }
 
   add(name: string): void {
     if (name.trim()) {
-      this.heroService.addHero({ name: name.trim() }).subscribe((hero) => {
-        this.heroes.push(hero)
-      })
+      this.heroService
+        .addHero({ name: name.trim() })
+        .subscribe((hero: Hero) => {
+          this.heroes.push(hero)
+        })
     }
   }
 

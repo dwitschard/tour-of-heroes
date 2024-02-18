@@ -8,10 +8,12 @@ import {
   switchMap
 } from 'rxjs'
 import { Hero } from '@shared/types/heroes.types'
+import { RouterLink } from '@angular/router';
+import { NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-hero-search',
-  template: `
+    selector: 'app-hero-search',
+    template: `
     <div id="search-component">
       <label for="search-box">Hero Search</label>
       <input #searchBox id="search-box" (input)="search(searchBox.value)" />
@@ -25,7 +27,9 @@ import { Hero } from '@shared/types/heroes.types'
       </ul>
     </div>
   `,
-  styleUrl: './hero-search.component.scss'
+    styleUrl: './hero-search.component.scss',
+    standalone: true,
+    imports: [NgFor, RouterLink, AsyncPipe]
 })
 export class HeroSearchComponent {
   heroes$!: Observable<Hero[]>

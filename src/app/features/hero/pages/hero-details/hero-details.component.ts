@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { Location } from '@angular/common'
+import { Location, UpperCasePipe } from '@angular/common'
 import { Hero } from '@shared/types/heroes.types'
 import { HeroService } from '@shared/services/hero.service'
+import { FormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-hero-details',
@@ -21,7 +22,9 @@ import { HeroService } from '@shared/services/hero.service'
     <button type="button" (click)="save()">save</button>
     <button type="button" (click)="goBack()">go back</button>
   `,
-  styleUrl: './hero-details.component.scss'
+  styleUrl: './hero-details.component.scss',
+  standalone: true,
+  imports: [FormsModule, UpperCasePipe]
 })
 export class HeroDetailsComponent implements OnInit {
   @Input({ required: true })
@@ -39,7 +42,10 @@ export class HeroDetailsComponent implements OnInit {
 
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'))
-    this.heroService.getHero(id).subscribe((hero) => (this.hero = hero))
+    this.heroService.getHero(id).subscribe((hero: Hero) => {
+      console.log(hero)
+      this.hero = hero
+    })
   }
 
   goBack() {

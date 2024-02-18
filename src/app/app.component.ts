@@ -1,4 +1,6 @@
 import { Component } from '@angular/core'
+import { RouterLink, RouterOutlet } from '@angular/router'
+import { MessagesComponent } from '@shared/components/messages/messages.component'
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,9 @@ import { Component } from '@angular/core'
 
     <app-messages />
   `,
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [RouterLink, RouterOutlet, MessagesComponent]
 })
 export class AppComponent {
   title = 'Tour of Heroes'

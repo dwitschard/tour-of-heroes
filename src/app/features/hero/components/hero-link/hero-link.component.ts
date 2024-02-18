@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Hero } from '@shared/types/heroes.types'
+import { TruncatePipe } from '@shared/pipes/truncate.pipe'
+import { RouterLink } from '@angular/router'
 
 @Component({
   selector: 'app-hero-link',
@@ -17,7 +19,9 @@ import { Hero } from '@shared/types/heroes.types'
       </button>
     </a>
   `,
-  styleUrl: './hero-link.component.scss'
+  styleUrl: './hero-link.component.scss',
+  standalone: true,
+  imports: [RouterLink, TruncatePipe]
 })
 export class HeroLinkComponent {
   @Input({ required: true })
